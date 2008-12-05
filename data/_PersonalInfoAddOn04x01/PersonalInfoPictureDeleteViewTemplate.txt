@@ -15,10 +15,10 @@
 
 
 %TMPL:DEF{"content"}%%TMPL:P{"bodystyle"}%
-<div class="patternTopic">
+<div class="foswikiTopic">
 %TMPL:P{"pagetitle"}%
 %TMPL:P{"appcontents"}%
-</div><!-- /patternTopic-->
+</div><!-- /foswikiTopic-->
 %TMPL:END%
 
 
