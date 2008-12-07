@@ -22,7 +22,7 @@
 
 
 %TMPL:DEF{"attachform"}%<div class="twikiFormSteps">
-<div class="twikiFormStep twikiLast">
+<div class="twikiFormStep foswikiLast">
 ---+++ %MAKETEXT{"Attach new file"}%
 
 %IF{"$ATTACHFILESIZELIMIT > 0" then="%MAKETEXT{"Upload up to [_1] KB." args="%ATTACHFILESIZELIMIT%"}%" else="%MAKETEXT{"There is no size limit for uploaded files."}%"}%

@@ -44,7 +44,7 @@
 %TMPL:DEF{"appcontents"}%
 %TMPL:P{"formstart"}%
 <div class="twikiFormSteps" style="border-bottom:0px;">
-<div class="twikiFormStep twikiLast">
+<div class="twikiFormStep foswikiLast">
 <div class="twikiImage">
 <img src="%PUBURL%/%BASEWEB%/%BASETOPIC%/%FILENAME%" alt="" />
 </div>
