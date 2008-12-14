@@ -47,6 +47,23 @@ Similar to the phone list but with pictures.
 
 <div class="twikiImage"><img src="%ATTACHURLPATH%/facebook.png" alt="Screenshot of face book page" width='728' height='408' /></div>
 
+
+---++ Using !PersonalInfo with !NatSkin
+
+To use the phone directory lookup, edit %TWIKIWEB%.<nop>TWikiWebSideBar:
+
+After
+<verbatim>
+%STARTINCLUDE%<!-- twiki.twikiwebsidebar -->
+</verbatim>
+you write:
+<verbatim>
+<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twikiEvent.js"></script>
+%INCLUDE{"Main.PersonalInfo" section="directSearch" title="*Phone list*" maxresults="10"}%
+</verbatim>
+(assuming you have !PersonalInfo installed in Main web)
+
+
 ---++ Settings
 
    * Set SHORTDESCRIPTION = User personalisation and user search tool
