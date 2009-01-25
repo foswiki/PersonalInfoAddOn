@@ -78,8 +78,8 @@ If you are upgrading from a previous version of this add-on, please note that an
    * Download the ZIP file from the Plugin web (see below).
    * Unzip =%TOPIC%.zip= in your Foswiki root directory.
    * You find 2 folders in subdirectory =_PersonalInfoAddOnFiles=.
-      * First time users: copy the files in both folders to your %USERSWEB% web.
-      * Upgraders: first check the files in =verify you don't overwrite when copying to user web= if you are not overwriting any customizations
+      * First time users: copy the files in both folders (not the folders itself!) to your %USERSWEB% web.
+      * Upgraders: first check the files in =verify_you_don_t_overwrite_when_copying_to_user_web= if you are not overwriting any customizations
    * Optional plugins:
       * Foswiki:Extensions/AttachContentPlugin for a faster quick search module 
       * Foswiki:Extensions/ImagePlugin for server-side image rendering (strongly recommended)
