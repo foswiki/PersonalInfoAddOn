@@ -105,7 +105,7 @@ If you are upgrading from a previous version of this add-on, please note that an
 | 04 Mar 2007 | 1.0 First release.  |
 | Demo url:  |   |
 | Home: | http://foswiki.org/Extensions/%TOPIC% |
-| Support: | http://foswiki.org/Support/%TOPIC%Dev |
+| Support: | http://foswiki.org/Support/%TOPIC% |
 
 
 %META:FILEATTACHMENT{name="userpage_edit.png" attr="" autoattached="1" comment="" date="1181684125" path="userpage_edit.png" size="59193" user="UnknownUser" version=""}%
