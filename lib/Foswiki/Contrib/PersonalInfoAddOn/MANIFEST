@@ -7,15 +7,6 @@ data/_PersonalInfoAddOnFiles/PersonalInfoFaceBook.txt 0660
 data/_PersonalInfoAddOnFiles/PersonalInfoLayoutModules.txt 0660
 data/_PersonalInfoAddOnFiles/PersonalInfo.txt 0660
 data/_PersonalInfoAddOnFiles/PersonalInfoHome.txt 0660
-data/_PersonalInfoAddOn04x01/PersonalInfoPictureViewTemplate.txt 0660
-data/_PersonalInfoAddOn04x01/PersonalInfoPictureDeleteViewTemplate.txt 0660
-data/_PersonalInfoAddOn04x01/PersonalInfoPictureUploadViewTemplate.txt 0660
-data/_PersonalInfoAddOn04x01/PersonalInfoModules.txt 0660
-data/_PersonalInfoAddOn04x01/PersonalInfoUserViewTemplate.txt 0660
-data/_PersonalInfoAddOn04x01/PersonalInfoFaceBook.txt 0660
-data/_PersonalInfoAddOn04x01/PersonalInfoLayoutModules.txt 0660
-data/_PersonalInfoAddOn04x01/PersonalInfo.txt 0660
-data/_PersonalInfoAddOn04x01/PersonalInfoHome.txt 0660
 data/Main/PersonalInfoDemoUser.txt 0660
 data/System/PersonalInfoAddOn.txt 0660
 pub/Main/PersonalInfoDemoUser/tiger.jpg 0664
