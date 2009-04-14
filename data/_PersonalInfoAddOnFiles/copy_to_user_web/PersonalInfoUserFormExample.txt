@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.0" version="1"}%
 ---+ User Form
 
-This form defines the form of the home pages of registered TWiki users listed in [[%MAINWEB%.WikiUsers][WikiUsers]].
+This form defines the form of the home pages of registered Foswiki users listed in [[%MAINWEB%.WikiUsers][WikiUsers]].
 
 | *Name* | *Type* | *Size* | *Values* | *Tooltip message* | *Attribute* |
 | <nop>FirstName | text | 40 | | | |

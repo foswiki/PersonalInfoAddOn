@@ -4,12 +4,12 @@
 <verbatim>
 %STARTSECTION{"paragraphWithImageLeft"}%<div class="pIparagraphWithImageLeft">
 <div class="pIparagraphWithImageLeftImage">
-<div class="twikiImage">%INCLUDE{"%TOPIC%" section="image"}%</div><!--/twikiImage-->
+<div class="foswikiImage">%INCLUDE{"%TOPIC%" section="image"}%</div><!--/foswikiImage-->
 </div><!--/pIparagraphWithImageLeftImage-->
 <div class="pIparagraphWithImageLeftText">
 %text%
 </div><!--/pIparagraphWithImageLeftText-->
-<br class="twikiClear" />
+<br class="foswikiClear" />
 </div><!--/pIparagraphWithImageLeft-->%ENDSECTION{"paragraphWithImageLeft"}%
 </verbatim>
 
@@ -27,8 +27,6 @@
 
 <verbatim>
 %STARTSECTION{"paragraphWithImageLeftStyle"}%<style type="text/css" media="all">
-.twikiImage {
-}
 .pIparagraphFrame {
 }
 .pIparagraphWithImageLeft {

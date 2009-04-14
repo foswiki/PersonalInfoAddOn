@@ -20,7 +20,7 @@
 %TMPL:DEF{"previous"}%%{"overide FILENAME variable"}%<input type="hidden" name="filename" value="" />%TMPL:END%
 
 
-%TMPL:DEF{"topicactionbuttons"}%<input type="submit" class="twikiSubmit" value='%MAKETEXT{"Upload file"}%' /> %MAKETEXT{"or"}% <a href="%SCRIPTURL{view}%/%WEB%/%TOPIC%?template=PersonalInfoPictureView">%MAKETEXT{"Cancel"}%</a>%TMPL:END%
+%TMPL:DEF{"topicactionbuttons"}%<input type="submit" class="foswikiSubmit" value='%MAKETEXT{"Upload file"}%' /> %MAKETEXT{"or"}% <a href="%SCRIPTURL{view}%/%WEB%/%TOPIC%?template=PersonalInfoPictureView">%MAKETEXT{"Cancel"}%</a>%TMPL:END%
 
 
 %TMPL:DEF{"hiddenfields"}%<input type="hidden" name="filecomment" value="" />

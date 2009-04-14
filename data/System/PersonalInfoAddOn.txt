@@ -23,31 +23,31 @@ When installed, see [[%USERSWEB%.PersonalInfoHome]] for additional details.
 ---+++ User homepage
 The user homepage with user picture and most common information 'lifted' from the extended !UserForm. The information that is shown is configurable.
 
-<div class="twikiImage"><img src="%ATTACHURLPATH%/userpage.png" alt="Screenshot of personalInfo block" width='728' height='300' /></div>
+<div class="foswikiImage"><img src="%ATTACHURLPATH%/userpage.png" alt="Screenshot of personalInfo block" width='728' height='300' /></div>
 
 ---+++ Edit mode of user information
 Foolproof editing of most common user data.
 
-<div class="twikiImage"><img src="%ATTACHURLPATH%/userpage_edit.png" alt="Screenshot of personalInfo: edit data" width='728' height='300' /></div>
+<div class="foswikiImage"><img src="%ATTACHURLPATH%/userpage_edit.png" alt="Screenshot of personalInfo: edit data" width='728' height='300' /></div>
 
 ---+++ Choosing a personal picture
 Each user can have multiple pictures and select one of them.
 
-<div class="twikiImage"><img src="%ATTACHURLPATH%/userpage_select_picture.png" alt="Screenshot of personalInfo: set picture screen" width='879' height='534' /></div>
+<div class="foswikiImage"><img src="%ATTACHURLPATH%/userpage_select_picture.png" alt="Screenshot of personalInfo: set picture screen" width='879' height='534' /></div>
 
 If Foswiki:Extensions.ImagePlugin is installed, pictures are scaled on the server so camera pictures can be safely uploaded without fear of network congestion.
 
 ---+++ Quick search phone list
-When installed at our homepage this quickly became the killer app of our intranet twiki.
+When installed at our homepage this quickly became the killer app of our intranet Foswiki.
 
 If Foswiki:Extensions/AttachContentPlugin is installed, data is read from a saved attachment file. Each time a user makes a change to the user topic this file is updated.
 
-<div class="twikiImage"><img src="%ATTACHURLPATH%/phonelist.png" alt="Screenshot of phone list quick search" width='314' height='236' /></div>
+<div class="foswikiImage"><img src="%ATTACHURLPATH%/phonelist.png" alt="Screenshot of phone list quick search" width='314' height='236' /></div>
 
 ---+++ Face book
 Similar to the phone list but with pictures.
 
-<div class="twikiImage"><img src="%ATTACHURLPATH%/facebook.png" alt="Screenshot of face book page" width='728' height='408' /></div>
+<div class="foswikiImage"><img src="%ATTACHURLPATH%/facebook.png" alt="Screenshot of face book page" width='728' height='408' /></div>
 
 
 ---++ Using !PersonalInfo with !NatSkin
@@ -90,7 +90,8 @@ If you are upgrading from a previous version of this add-on, please note that an
 | Copyright &copy;: | 2007, 2008, 2009 Arthur Clemens |
 | License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]] |
 | Dependencies: | %$DEPENDENCIES% |
-| Plugin Version: | 1.5 (25 Jan 2009)  |
+| Plugin Version: | 1.5.1 (14 Apr 2009)  |
+| 14 Apr 2009 | 1.5.1 Corrected numerous references to 'twiki'. |
 | 25 Jan 2009 | 1.5 Foswiki version |
 | 08 Nov 2008 | 1.4.1 Prevent "create new topic links" in edit fields with wikiword names. |
 | 06 Apr 2008 | 1.4 Various formatting fixes (version TWiki 4.2 only). |

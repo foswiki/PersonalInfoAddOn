@@ -9,7 +9,7 @@
 %TMPL:DEF{"titleaction"}%%MAKETEXT{"(delete picture)"}% %TMPL:END%
 
 
-%TMPL:DEF{"topicactionbuttons"}%<input type="submit" class="twikiSubmit" value=' %MAKETEXT{"Delete this picture"}% ' /> %MAKETEXT{"or"}% <a href="%SCRIPTURL{view}%/%WEB%/%TOPIC%?template=PersonalInfoPictureView">%MAKETEXT{"Cancel"}%</a>%TMPL:END%
+%TMPL:DEF{"topicactionbuttons"}%<input type="submit" class="foswikiSubmit" value=' %MAKETEXT{"Delete this picture"}% ' /> %MAKETEXT{"or"}% <a href="%SCRIPTURL{view}%/%WEB%/%TOPIC%?template=PersonalInfoPictureView">%MAKETEXT{"Cancel"}%</a>%TMPL:END%
 
 
 %TMPL:DEF{"formstart"}%<form method="post" name="rename" action="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%">%TMPL:END%
@@ -21,9 +21,9 @@
 </form>%TMPL:END%
 
 
-%TMPL:DEF{"content"}%%TMPL:P{"formstart"}%<div class="twikiFormSteps">
-<div class="twikiFormStep pIPictures">
-<span class="twikiImage">%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%FILENAME%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class="twikiSmallish foswikiGrayText userPictureActions">%FILENAME%</span>
-</div><!--/twikiFormStep--></div><!--/twikiFormSteps-->
+%TMPL:DEF{"content"}%%TMPL:P{"formstart"}%<div class="foswikiFormSteps">
+<div class="foswikiFormStep pIPictures">
+<span class="foswikiImage">%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%FILENAME%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class="foswikiSmallish foswikiGrayText userPictureActions">%FILENAME%</span>
+</div><!--/foswikiFormStep--></div><!--/foswikiFormSteps-->
 %TMPL:P{"topicaction"}%
 %TMPL:P{"formend"}%%TMPL:END%
