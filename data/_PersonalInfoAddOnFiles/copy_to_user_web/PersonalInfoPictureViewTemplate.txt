@@ -22,7 +22,7 @@
 
 %{ A basic row definition, for attachment table and attach screen }%
 %TMPL:DEF{ATTACH:files:row(basic)}%<div class="foswikiFormStep genericFileType fileType%A_EXT%">
-<input type="radio" class="foswikiRadioButton" id="<nop>Picture%A_FILE%" name="Picture" value="%A_FILE%" %IF{" '%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%"}%' = '%A_FILE%' " then="checked=\"checked\"" else=""}% />&nbsp;<span class="foswikiImage">%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%A_FILE%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class="foswikiSmallish foswikiGrayText userPictureActions">%A_FILE% <a href="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?template=PersonalInfoPictureDeleteView&attachment=%ENCODE{"%A_FILE%"}%" rel='nofollow'>delete</a></span></div>%TMPL:END%
+<input type="radio" class="foswikiRadioButton" id="<nop>Picture%A_FILE%" name="Picture" value="%A_FILE%" %IF{" '%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%"}%' = '%A_FILE%' " then="checked=\"checked\"" else=""}% />&nbsp;<span class="foswikiImage">%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%A_FILE%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class="foswikiSmallish foswikiGrayText userPictureActions">%A_FILE% <a href="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?template=PersonalInfoPictureDeleteView&attachment=%ENCODE{"%A_FILE%"}%" rel='nofollow'>delete...</a></span></div>%TMPL:END%
 
 %{ Footer for topic attachment table }%
 %TMPL:DEF{ATTACH:files:footer}%</div><!--/foswikiFormSteps--></div><!--/pIPictures-->
@@ -66,12 +66,13 @@
 .pIPictures .fileTypejpeg,
 .pIPictures .fileTypeJPEG {display:block;}
 .pIPictures .userPictureActions {margin:0 0 0 1em;}
-.piUploadNew {margin:1em 0; text-align:center;}
+.pIPictures .userPictureActions a:link,
+.pIPictures .userPictureActions a:visited {text-decoration:underline;}
+.piUploadNew {margin:1em 0; text-align:left;}
 .piUploadNew a {font-weight:bold;}
 .foswikiImage img {vertical-align:middle;}
 .imageFloat {display:inline;}
-</style>
-%INCLUDE{"PersonalInfoLayoutModules" section="imageStyle"}%%TMPL:END%
+</style>%TMPL:END%
 
 
 %TMPL:DEF{"content"}%%TMPL:P{"picturelist"}%%TMPL:END%
