@@ -6,6 +6,8 @@
 %TEXT% %TMPL:END%
 
 %{"make sure that the PersonalInfo topic will be saved on normal edit"}%
-%TMPL:DEF{"edit_topic_link"}%<span class="patternButton"><a href='%SCRIPTURL{"edit"}%/%WEB%/%TOPIC%?t=%GMTIME{"$epoch"}%%TMPL:P{"url_param_editaction"}%;redirectto=%SCRIPTURL{save}%/%WEB%/PersonalInfo%3Fredirectto=%TOPIC%' rel='nofollow' %MAKETEXT{"title='Edit this topic text' accesskey='e'>&Edit"}%</a></span>%TMPL:END%
+%{ -- this is all disabled, because you must now POST to the save script in Foswiki.
+TMPL:DEF{"edit_topic_link"}<span class="patternButton"><a href='%SCRIPTURL{"edit"}%/%WEB%/%TOPIC%?t=%GMTIME{"$epoch"}%%TMPL:P{"url_param_editaction"}%;redirectto=%SCRIPTURL{save}%/%WEB%/PersonalInfo%3Fredirectto=%TOPIC%' rel='nofollow' %MAKETEXT{"title='Edit this topic text' accesskey='e'>&Edit"}%</a></span>TMPL:END
+}%
 
 %TMPL:DEF{"templatestyle"}%%INCLUDE{"PersonalInfo" section="personalInfoStyle"}%%TMPL:END%
