@@ -1,9 +1,6 @@
-%META:TOPICINFO{author="ProjectContributor" date="1172605768" format="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1281879251" format="1.1" version="1.1"}%
 ---+!! Face Book
-
-<div class="foswikiPageForm"><table id="foswikiSearchTable" border="0" cellspacing="0" cellpadding="0"><tr><td class="first">
-*Search name:* <input type="text" class="foswikiInputField" size="%IF{"'%inputfieldsize%'!=''" then="%inputfieldsize%" else="12"}%" id="personalInfoSearchBox" name="personalInfoSearchBox" />
-</td></tr></table></div>
+*Search name:* <input type="text" class="foswikiInputField" size="%IF{"'%inputfieldsize%'!=''" then="%inputfieldsize%" else="20"}%" id="personalInfoSearchBox" name="personalInfoSearchBox" />
 
 %INCLUDE{"PersonalInfo" section="pictures" gridWidth="130" gridHeight="120" imgHeight="85"}%
 %INCLUDE{"PersonalInfo" section="pictureFilterSearch"}%

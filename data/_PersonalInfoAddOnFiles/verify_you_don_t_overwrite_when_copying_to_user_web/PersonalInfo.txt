@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1206906698" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1281879251" format="1.1" version="1"}%
 ---+!! Personal Info !AddOn Custom Data
 
 *Admin topic for %SYSTEMWEB%.PersonalInfoAddOn.* For usage instructions see [[PersonalInfoHome]].
@@ -8,7 +8,12 @@ This current topic and PersonalInfoModules work in tandem:
    * PersonalInfo contains customizations for your site
 
 <div class="foswikiHelp">
-%IF{"context AttachContentPluginEnabled" then='If you are using =directSearch= you may *<form method="post" action="%SCRIPTURLPATH{"save"}%/%WEB%/%TOPIC%"><input type="hidden" name="action_save" value="1"/><input type="submit" class="foswikiButton" value="update"/></form> the directSearch javascript file now</a>* (by saving this topic the [[%ATTACHURL%/directSearch.js][attachment]] will be updated)' else='!AttachContentPlugin is not enabled.%BR%To read javascript more efficiently in this section, please install and enable Foswiki:Extensions/AttachContentPlugin.'}%
+%IF{"context AttachContentPluginEnabled AND $PERSONALINFOADDON_FILECACHE" then='<form method="post" action="%SCRIPTURLPATH{"save"}%/%WEB%/%TOPIC%"><input type="hidden" name="action_save" value="1"/><input type="submit" class="foswikiButton" value="Update user data cache" /></form> [[%ATTACHURL%/directSearch.js][view attachment]]'}%%IF{"context AttachContentPluginEnabled AND NOT $PERSONALINFOADDON_FILECACHE"
+then='For fast user data retrieval, =Set PERSONALINFOADDON_FILECACHE = 1= in %USERSWEB%.SitePreferences.'}%%IF{"NOT context AttachContentPluginEnabled AND NOT $PERSONALINFOADDON_FILECACHE" then='For fast user data retrieval:
+   1 install Foswiki:Extensions/AttachContentPlugin
+   1 enable it in [[%SCRIPTURL{configure}%#EnabledPlugins$Extensions][configure]]
+   1 =Set PERSONALINFOADDON_FILECACHE = 1= in [[%USERSWEB%.SitePreferences]].
+'}%
 </div>
 
 ---++ How can I customize a section?
@@ -69,7 +74,7 @@ To use a custom implementation: replace INCLUDE variable by custom text
 
 ---+++ createDirectSearchAttachment
 <verbatim>
-%STARTATTACH{"directSearch.js"}%%INCLUDE{"PersonalInfoModules" section="directSearchScriptCode"}%%ENDATTACH%
+%STARTATTACH{"directSearch.js" comment="<nop>PersonalInfoAddOn cached user data"}%%INCLUDE{"PersonalInfoModules" section="directSearchScriptCode"}%%ENDATTACH%
 </verbatim>
 
 ---+++ directSearch

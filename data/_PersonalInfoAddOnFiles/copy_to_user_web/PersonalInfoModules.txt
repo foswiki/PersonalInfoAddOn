@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1173206530" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1281879251" format="1.1" version="1.1"}%
 ---+!! Personal Info !AddOn Application Sections
 
 *Admin topic for %SYSTEMWEB%.PersonalInfoAddOn.* %BR%
@@ -6,7 +6,8 @@ This topic holds a number of modules (INCLUDE sections) to display and search us
 
 *Leave this file intact - always make custom changes to PersonalInfo.*
 
-
+---++ Topics excluded from search
+%STARTSECTION{"personalInfoExcluded"}%UserForm,NewUserTemplate,PersonalInfo,PersonalInfoModules,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser%ENDSECTION{"personalInfoExcluded"}%
 
 ---++ personalInfo
 
@@ -16,7 +17,7 @@ This topic holds a number of modules (INCLUDE sections) to display and search us
 
 <verbatim>
 %STARTSECTION{"personalInfoDataRow" fieldName=%FIELDNAME% label=%LABEL%}%<tr>
-<th> %label% </th><td> %IF{"defined editUserData" then="<noautolink><input type='text' name='%fieldName%' id='%fieldName%' $percntIF{$quot\'%editable%\'=\'no\'$quot then=$quotdisabled=\'disabled\'$quot}$percnt $percntIF{$quot\'%editable%\'=\'no\'$quot then=$quotclass=\'foswikiInputFieldDisabled\'$quot else=$quotclass=\'foswikiInputField\'$quot}$percnt size='40' value='%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="$value"}%' /></noautolink>" else="%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="$percntIF{$quot\'%link%\'=\'yes\'$quot then=$quot[[$value]]$quot else=$quot$value$quot}$percnt"}%" }% </td>
+<th> %label% </th><td> %IF{"defined editUserData" then="<noautolink><input type='text' name='%fieldName%' id='%fieldName%' $percntIF{$quot\'%editable%\'=\'no\'$quot then=$quotdisabled=\'disabled\'$quot}$percnt $percntIF{$quot\'%editable%\'=\'no\'$quot then=$quotclass=\'foswikiInputFieldDisabled\'$quot else=$quotclass=\'foswikiInputField\'$quot}$percnt size='40' value='%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="<nop>$value"}%' /></noautolink>" else="%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="$percntIF{$quot\'%link%\'=\'yes\'$quot then=$quot[[$value]]$quot else=$quot$value$quot}$percnt"}%" }% </td>
 </tr>%ENDSECTION{"personalInfoDataRow"}%
 </verbatim>
 
@@ -24,67 +25,75 @@ This topic holds a number of modules (INCLUDE sections) to display and search us
 In view template PersonalInfoUserViewTemplate these styles are added to the HTML head. Other pages need to include the styles using =%<nop>INCLUDE{}%=.
 
 <verbatim>
-%STARTSECTION{"personalInfoStyle"}%<style type="text/css" media="all">
+%STARTSECTION{"personalInfoStyle"}%%ADDTOZONE{
+"head"
+text="<style type='text/css' media='all'>
 .personalInfo {
-margin:0 0 1em 0;
+	margin:0 0 1em 0;
 }
 .personalInfo .pIparagraphWithImageLeftText table {
-border-width:1px 0 0 0;
-border-collapse:collapse;
+	border-width:1px 0 0 0;
+	border-collapse:collapse;
 }
 .personalInfo .pIparagraphWithImageLeftText th {
-font-weight:normal;
-text-align:left;
-color:#555;
-overflow:hidden;
-white-space:nowrap;
+	font-weight:normal;
+	text-align:left;
+	color:#555;
+	overflow:hidden;
+	white-space:nowrap;
 }
 .personalInfo .pIparagraphWithImageLeftText td {
-width:100%;
-overflow:hidden;
-white-space:nowrap;
+	overflow:hidden;
+	white-space:nowrap;
 }
 .personalInfo .pIparagraphWithImageLeftText td,
 .personalInfo .pIparagraphWithImageLeftText th {
-line-height:1.3em;
-border-width:0 0 1px 0;
-padding:.4em .8em;
-vertical-align:middle;
+	line-height:1.3em;
+	border-width:0 0 1px 0;
+	padding:.4em .8em;
+	vertical-align:middle;
 }
 .personalInfo .pIparagraphWithImageLeftText table,
 .personalInfo .pIparagraphWithImageLeftText td,
 .personalInfo .pIparagraphWithImageLeftText th {
-border-style:solid;
-border-color:#e5e2db;
+	border-style:solid;
+	border-color:#e5e2db;
 }
 .personalInfoFormDataActions {
-margin:.5em 0 2em 0;
-padding:0 .8em; /* same as .pIparagraphWithImageLeftText td */
-}
-.personalInfoFormDataActions a {
-font-size:86%; /* same as .foswikiSmall */
+	margin:1em 0 2em 0;
+	padding:0 .8em; /* same as .pIparagraphWithImageLeftText td */
 }
 .personalInfoFormDataActions .foswikiSeparator {
-color:#ccc;
+	color:#ccc;
 }
-</style>%ENDSECTION{"personalInfoStyle"}%
+</style>"
+id="PersonalInfoAddOn_personalInfoStyle"
+}%%ENDSECTION{"personalInfoStyle"}%
 </verbatim>
 
+---++ personalInfo
+
 <verbatim>
-%STARTSECTION{"personalInfo"}%<div class="pIparagraphFrame personalInfo%IF{"$'FORMFIELD{WorkStatus}'!='Current'" then=" pIFormer"}%">
+%STARTSECTION{"personalInfo"}%%INCLUDE{"PersonalInfoLayoutModules" section="paragraphWithImageLeftStyle"}%<div class="pIparagraphFrame personalInfo%IF{"$'FORMFIELD{\"WorkStatus\" topic=\"%BASETOPIC%\"}'!='Current'" then=" pIFormer"}%">
 ---+!! <noautolink>%FORMFIELD{"FirstName" topic="%BASETOPIC%"}% %FORMFIELD{"LastName" topic="%BASETOPIC%"}%</noautolink>
-%INCLUDE{"PersonalInfoLayoutModules" section="paragraphWithImageLeftStyle"}%
 <form name="main" action="%SCRIPTURLPATH{"save"}%/%BASEWEB%/%BASETOPIC%" method="post">
 <input type="hidden" name="editaction" value="form" />
-<!-- if !AllowRedirectUrl is enabled in configure, !PersonalInfo is updated to save the search data as javascript file -->
 %INCLUDE{"PersonalInfoLayoutModules" section="paragraphWithImageLeft" imgName="%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%" format="$value" default="" alttext=""}%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120" imgTitle="" text="%INCLUDE{"PersonalInfo" section="personalInfoFields"}%
-%IF{"not defined editUserData" then="<div class='personalInfoFormDataActions foswikiUnvisited'>[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?editUserData=on][Edit data]] <span class='foswikiSeparator'>|</span> [[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?template=PersonalInfoPictureView][Change picture]]</div>" }% %IF{"defined editUserData" then="<div class='personalInfoFormDataActions'><input type='submit' class='foswikiSubmit' name='save' id='save' value='Save' /> <input type='submit' class='foswikiButton' name='cancel' id='cancel' value='Cancel' /></div>" }%" }% </form></div><!--/pIparagraphFrame-->%ENDSECTION{"personalInfo"}%
+%IF{"not defined editUserData" then="<div class='personalInfoFormDataActions foswikiUnvisited foswikiSmall'>[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?editUserData=on][Edit data]] <span class='foswikiSeparator'>|</span> <span class='foswikiUnvisited'>[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?template=PersonalInfoPictureView][%MAKETEXT{Change picture}%]]</span> <span class='foswikiSeparator'>|</span> %IF{"$'FORMFIELD{\"WorkStatus\"  topic=\"%BASETOPIC%\"}'!='Current'" then="<input type='image' src='%ICONURLPATH{userinactive}%' alt='Set active' /> Set active<input type='hidden' name='WorkStatus' value='Current' />" else="<input type='image' src='%ICONURLPATH{useractive}%' alt='Set inactive' /> Set inactive<input type='hidden' name='WorkStatus' value='Former' />"}% <span class='foswikiSeparator'>|</span> [[PersonalInfoFaceBook][Find other users]]</div>" }% %IF{"defined editUserData" then="<div class='personalInfoFormDataActions'><input type='submit' class='foswikiSubmit' name='save' id='save' value='%MAKETEXT{Save}%' /> <input type='submit' class='foswikiButtonCancel' name='cancel' id='cancel' value='%MAKETEXT{Cancel}%' /></div>" }%" }% </form></div><!--/pIparagraphFrame-->%ENDSECTION{"personalInfo"}%
+</verbatim>
+
+---++ activateDeactivate
+
+<verbatim>
+%STARTSECTION{"activateDeactivate"}%
+<form
+%ENDSECTION{"activateDeactivate"}%
 </verbatim>
 
 ---++ phoneList
 
 <verbatim>
-%STARTSECTION{"phoneList"}%%SEARCH{ "[W]orkPhone;[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation" format="   * [[$web.$topic][$topic]] $formfield(WorkPhone)"}%%ENDSECTION{"phoneList"}%
+%STARTSECTION{"phoneList"}%%SEARCH{ "[W]orkPhone;[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,NewUserTemplate,PersonalInfo,PersonalInfoModules,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="   * [[$web.$topic][$topic]] $formfield(WorkPhone)"}%%ENDSECTION{"phoneList"}%
 </verbatim>
 
 
@@ -93,7 +102,7 @@ color:#ccc;
 <verbatim>
 %STARTSECTION{"phoneListXML"}%<?xml version="1.0" encoding="ISO-8859-1"?>
 <users>
-%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="<user><firstname><![CDATA[$formfield(FirstName)]]></firstname><lastname><![CDATA[$formfield(LastName)]]></lastname><phone><![CDATA[$formfield(WorkPhone)]]></phone><url><![CDATA[%SCRIPTURL{view}%/%WEB%/$topic]]></url><imgname><![CDATA[$formfield(Picture)]]></imgname><imgurl><![CDATA[%PUBURL%/Main/$topic/]]></imgurl></user>" "}%
+%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,NewUserTemplate,PersonalInfo,PersonalInfoModules,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="<user><firstname><![CDATA[$formfield(FirstName)]]></firstname><lastname><![CDATA[$formfield(LastName)]]></lastname><phone><![CDATA[$formfield(WorkPhone)]]></phone><url><![CDATA[%SCRIPTURL{view}%/%WEB%/$topic]]></url><imgname><![CDATA[$formfield(Picture)]]></imgname><imgurl><![CDATA[%PUBURL%/Main/$topic/]]></imgurl></user>" "}%
 </users>
 %ENDSECTION{"phoneListXML"}%
 </verbatim>
@@ -103,7 +112,7 @@ color:#ccc;
 ---++ personalSearch
 
 <verbatim>
-%STARTSECTION{"personalSearch"}%%SEARCH{ "[F]irstName.*value=.*(%URLPARAM{"q"}%)|[L]astName.*value=.*(%URLPARAM{"q"}%)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="   * [[$web.$topic][$topic]] $formfield(WorkPhone)"}%%ENDSECTION{"personalSearch"}%
+%STARTSECTION{"personalSearch"}%%SEARCH{ "[F]irstName.*value=.*(%URLPARAM{"q"}%)|[L]astName.*value=.*(%URLPARAM{"q"}%)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,NewUserTemplate,PersonalInfo,PersonalInfoModules,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="   * [[$web.$topic][$topic]] $formfield(WorkPhone)"}%%ENDSECTION{"personalSearch"}%
 </verbatim>
 
 
@@ -111,7 +120,7 @@ color:#ccc;
 ---++ vCard
 
 <verbatim>
-%STARTSECTION{"vCard"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="begin:vcard
+%STARTSECTION{"vCard"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,NewUserTemplate,PersonalInfo,PersonalInfoModules,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="begin:vcard
 fn:$formfield(FirstName) $formfield(LastName)
 n:$formfield(LastName);$formfield(FirstName)
 tel;type=work:$formfield(WorkPhone)
@@ -127,7 +136,7 @@ end:vcard"}%%ENDSECTION{"vCard"}%
 %STARTSECTION{"directSearch" title="%title%" maxresults="%maxresults%" layout="%layout%" showpictures="%showpictures%" inputfieldsize="%inputfieldsize%" pictureheight="%PICTUREHEIGHT%"}% <div> %title% </div>
 <input type="text" class="foswikiInputField" size="%IF{"defined inputfieldsize" then="%inputfieldsize%" else="12"}%" id="personalInfoSearchBox" name="personalInfoSearchBox" />
 <div id="personalInfoSearchResults"><!-- search results will be displayed here --></div>
-%IF{"context AttachContentPluginEnabled" then='%INCLUDE{"PersonalInfo" section="directSearchScriptFile"}%' else='%INCLUDE{"PersonalInfo" section="directSearchScript" raw="on" literal="on"}%'}%
+%IF{"$PERSONALINFOADDON_FILECACHE" then='%INCLUDE{"PersonalInfo" section="directSearchScriptFile"}%' else='%INCLUDE{"PersonalInfo" section="directSearchScript" raw="on" literal="on"}%'}%
 %INCLUDE{"PersonalInfoModules" section="initSearchBox" raw="on" literal="on"}%
 <style type="text/css" media="all">
 #personalInfoSearchResults td {
@@ -139,23 +148,30 @@ end:vcard"}%%ENDSECTION{"vCard"}%
 </verbatim>
 
 <verbatim>
-%STARTSECTION{"initSearchBox"}%<script language="javascript" type="text/javascript">
+%STARTSECTION{"initSearchBox"}%%ADDTOZONE{
+"head"
+text="<script language='javascript' type='text/javascript'>
 // <![CDATA[
-	function personalInfoHandleKeyUp() {
-		pISearch.showResults(this.value);
-		return false;
+var pISearch; if (pISearch == undefined) pISearch = {};
+function personalInfoHandleKeyUp() {
+	pISearch.showResults(this.value);
+	return false;
+}
+function initSearchBox() {
+	var box = document.getElementById('personalInfoSearchBox');
+	if (box) {
+		box.onkeyup = personalInfoHandleKeyUp;
+		box.focus();
+		pISearch.showResults(box.value);
 	}
-	function initSearchBox() {
-		var box = document.getElementById('personalInfoSearchBox');
-		if (box) {
-			box.onkeyup = personalInfoHandleKeyUp;
-			box.focus();
-			pISearch.showResults(box.value);
-		}
-	}
-	foswiki.Event.addLoadEvent(initSearchBox);
+}
+// assume jquery
+$(document).ready(initSearchBox);
 // ]]>
-</script>%ENDSECTION{"initSearchBox"}%
+</script>"
+id="PersonalInfo_initSearchBox"
+requires="JQUERYPLUGIN"
+}%%ENDSECTION{"initSearchBox"}%
 </verbatim>
 
 <verbatim>
@@ -172,8 +188,8 @@ var MAX_RESULTS=%IF{"defined maxresults" then="%maxresults%" else="12"}%;
 </verbatim>
 
 <verbatim>
-%STARTSECTION{"directSearchScriptCode"}%var pISearch = {};
-var userData = new Array(%INCLUDE{"PersonalInfo" section="directSearchData"}%);
+%STARTSECTION{"directSearchScriptCode"}%var pISearch; if (pISearch == undefined) pISearch = {};
+pISearch.userData = new Array(%INCLUDE{"PersonalInfo" section="directSearchData"}%);
 var MAX_RESULTS;
 if (MAX_RESULTS == undefined) MAX_RESULTS = 12;
 pISearch.initSearch = function() {}
@@ -204,6 +220,7 @@ pISearch.outputHtmlEnd = function() {
 	return "</table>";
 }
 pISearch.showResults = function(inValue) {
+	if (!pISearch.userData) return;
 	var output = "";
 	var resultCount = 0;
 	var query = inValue.toLowerCase();
@@ -212,10 +229,10 @@ pISearch.showResults = function(inValue) {
 		pISearch.startSearch();
 		output = pISearch.outputHtmlStart();
 		var i = 0;
-		while ( i < userData.length && pISearch.withinBounds(resultCount)) {
-			var name = userData[i].name;
+		while ( i < pISearch.userData.length && pISearch.withinBounds(resultCount)) {
+			var name = pISearch.userData[i].name;
 			if (name.match(regex)) {
-				output += pISearch.processResult(name, userData[i]);
+				output += pISearch.processResult(name, pISearch.userData[i]);
 				resultCount++;
 			}
 			i++;
@@ -235,7 +252,7 @@ pISearch.showResults = function(inValue) {
 
 ---+++ directSearchData
 <verbatim>
-%STARTSECTION{"directSearchData"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="{name:\"$formfield(FirstName) $formfield(LastName)\",phone:\"$formfield(WorkPhone)\",topic:\"$web/$topic\",pictureName:\"$formfield(Picture)\"}" separator=", "}%%ENDSECTION{"directSearchData"}%
+%STARTSECTION{"directSearchData"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,NewUserTemplate,PersonalInfo,PersonalInfoModules,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="{name:\"$formfield(FirstName) $formfield(LastName)\",phone:\"$formfield(WorkPhone)\",topic:\"$web/$topic\",pictureName:\"$formfield(Picture)\"}" separator=", "}%%ENDSECTION{"directSearchData"}%
 </verbatim>
 
 
@@ -262,77 +279,82 @@ color:#fff;
 </style>
 <div id="compact">
 | *Personal page* | *Phone* | *E-mail* | *Location* |
-%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="|[[%SCRIPTURL{view}%/$web/$topic][$formfield(FirstName) $formfield(LastName)]] |$formfield(WorkPhone) |$formfield(WorkEmail) |$formfield(WorkLocation) |" "}%
+%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,NewUserTemplate,PersonalInfo,PersonalInfoModules,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="|[[%SCRIPTURL{view}%/$web/$topic][$formfield(FirstName) $formfield(LastName)]] |$formfield(WorkPhone) |$formfield(WorkEmail) |$formfield(WorkLocation) |" "}%
 </div>%ENDSECTION{"tableOfAllUsers"}%
 </verbatim>
 
 ---+++ Pictures
 
 <verbatim>
-%STARTSECTION{"pictures"}%<style type="text/css" media="all">
+%STARTSECTION{"pictures"}%%ADDTOZONE{
+"head"
+text="<style type='text/css' media='all'>
 #pISearchResultsGrid {
-margin:1em 0;
+	margin:1em 0;
 }
 #pISearchResultsGrid .foswikiImage a img {
-border:none;
-margin:0 0 .35em 0;
-padding:0;
+	border:none;
+	margin:0 0 .35em 0;
+	padding:0;
 }
 #pISearchResultsGrid a.pISearchResultsGridItem {
-display:block;
-float:left;
-text-align:center;
-border:1px solid #eee;
-text-decoration:none;
-margin:0 .5em 1em 0;
-padding:3px;
-overflow:hidden;
-width:auto;%IF{"defined gridWidth" then="width:%gridWidth%px;"}%
+	display:block;
+	float:left;
+	text-align:center;
+	border:1px solid #eee;
+	text-decoration:none;
+	margin:0 .5em 1em 0;
+	padding:3px;
+	overflow:hidden;
+	width:auto;%IF{"defined gridWidth" then="width:%gridWidth%px;"}%
 height:100%;%IF{"defined gridHeight" then="height:%gridHeight%px;"}%
 }
 #pISearchResultsGrid a.pISearchResultsGridItem img {
-overflow:hidden;
-width:auto;%IF{"defined imgWidth and '%imgWidth%'!=''" then="width:%imgWidth%px;"}%
+	overflow:hidden;
+	width:auto;%IF{"defined imgWidth and '%imgWidth%'!=''" then="width:%imgWidth%px;"}%
 }
 #pISearchResultsGrid .pISearchResultsGridInfo {
-display:block;
-font-size:94%;
-line-height:100%;
+	display:block;
+	font-size:94%;
+	line-height:100%;
 overflow:hidden;
 }
 #pISearchResultsGrid a:link .pISearchResultsGridInfo,
 #pISearchResultsGrid a:visited .pISearchResultsGridInfo {
-text-decoration:none;
-color:#06c;
+	text-decoration:none;
+	color:#06c;
 }
 #pISearchResultsGrid .foswikiImage a:hover {
-border:1px solid #06c;
+	border:1px solid #06c;
 }
 #pISearchResultsGrid a:hover .pISearchResultsGridInfo {
-text-decoration:none;
-color:#06c;
-background:none;
+	text-decoration:none;
+	color:#06c;
+	background:none;
 }
-</style>
-<div id="pISearchResultsGrid">%SEARCH{ "[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="PresentationForm,UserForm,PersonalInfo,PersonalInfoDocumentation,PersonalInfoFaceBook,ProjectContributor,WikiGuest,UnknownUser%IF{'defined exclude' then=',%exclude%'}%" order="topic" format="<div class='foswikiImage'><a href='%SCRIPTURL{view}%/$web/$topic' class='pISearchResultsGridItem' id='pISearch$topic' title='$formfield(FirstName) $formfield(LastName)'>$percntINCLUDE{$quotPersonalInfoLayoutModules$quot section=$quotimage$quot imgType=$quotnolink$quot imgWeb=$quot$web$quot imgTopic=$quot$topic$quot imgTitle=$quot$formfield(FirstName) $formfield(LastName)$quot imgName=$quot$percntFORMFIELD{$quotPicture$quot topic=$quot$web.$topic$quot format=$quot$value$quot default=$quot$quot alttext=$quot$quot}$percnt$quot}$percnt<span class='pISearchResultsGridInfo'>$formfield(FirstName) $formfield(LastName)</span></a></div>" "}%<br class="foswikiClear" /></div>%ENDSECTION{"pictures"}%
+</style>"
+id="PersonalInfoAddOn_pictures"
+}%
+<div id="pISearchResultsGrid">%SEARCH{ "[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,NewUserTemplate,PersonalInfo,PersonalInfoModules,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser%IF{'defined exclude' then=',%exclude%'}%" order="topic" format="<div class='foswikiImage'><a href='%SCRIPTURL{view}%/$web/$topic' class='pISearchResultsGridItem' id='pISearch$topic' title='$formfield(FirstName) $formfield(LastName)'>$percntINCLUDE{$quotPersonalInfoLayoutModules$quot section=$quotimage$quot imgType=$quotnolink$quot imgWeb=$quot$web$quot imgTopic=$quot$topic$quot imgTitle=$quot$formfield(FirstName) $formfield(LastName)$quot imgName=$quot$percntFORMFIELD{$quotPicture$quot topic=$quot$web.$topic$quot format=$quot$value$quot default=$quot$quot alttext=$quot$quot}$percnt$quot}$percnt<span class='pISearchResultsGridInfo'>$formfield(FirstName) $formfield(LastName)</span></a></div>" "}%<p class="foswikiClear" /></div>%ENDSECTION{"pictures"}%
 </verbatim>
 
 
 ---+++ pictureFilterSearch
-
 <verbatim>
-%STARTSECTION{"pictureFilterSearch"}%%IF{"context AttachContentPluginEnabled" then='%INCLUDE{"PersonalInfo" section="directSearchScriptFile"}%' else='%INCLUDE{"PersonalInfo" section="directSearchScript" raw="on" literal="on"}%'}%<script language="javascript" type="text/javascript">
+%STARTSECTION{"pictureFilterSearch"}%%IF{"$PERSONALINFOADDON_FILECACHE" then='%INCLUDE{"PersonalInfo" section="directSearchScriptFile"}%' else='%INCLUDE{"PersonalInfo" section="directSearchScript" raw="on" literal="on"}%'}%<script language="javascript" type="text/javascript">
 // <![CDATA[
+var pISearch; if (pISearch == undefined) pISearch = {};
 var MAX_RESULTS=%IF{"defined maxresults" then="%maxresults%" else="12"}%;
 pISearch.pictureSet = {};
 pISearch.initSearch = function() {
+	if (!pISearch.userData) return;
 	MAX_RESULTS = -1;
 	var pictureElems = document.getElementById('pISearchResultsGrid').getElementsByTagName('a');
 	var i=0;
-	while ( i < userData.length) {
-		var name = userData[i].name;
+	while ( i < pISearch.userData.length) {
+		var name = pISearch.userData[i].name;
 		var re = new RegExp(/(.*?)\//g);
-		var topic = userData[i].topic.replace(re, "");
+		var topic = pISearch.userData[i].topic.replace(re, "");
 		pISearch.pictureSet[topic] = document.getElementById("pISearch" + topic);
 		i++;
 	}
@@ -362,7 +384,8 @@ pISearch.processResult = function(inName, inUserData) {
 		pISearch.pictureSet[topic].style.display = 'inline';
 	}
 }
-foswiki.Event.addLoadEvent(pISearch.initSearch);
+// assume jquery
+$(document).ready(pISearch.initSearch);
 // ]]>
 </script>
 %INCLUDE{"PersonalInfoModules" section="initSearchBox" raw="on" literal="on"}%%ENDSECTION{"pictureFilterSearch"}%

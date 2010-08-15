@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1166089765" format="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1281879251" format="1.1" version="1.1"}%
 %TMPL:INCLUDE{"foswiki"}%
 %TMPL:INCLUDE{"attachtables"}%
 
@@ -22,7 +22,7 @@
 
 %{ A basic row definition, for attachment table and attach screen }%
 %TMPL:DEF{ATTACH:files:row(basic)}%<div class="foswikiFormStep genericFileType fileType%A_EXT%">
-<input type="radio" class="foswikiRadioButton" id="<nop>Picture%A_FILE%" name="Picture" value="%A_FILE%" %IF{" '%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%"}%' = '%A_FILE%' " then="checked=\"checked\"" else=""}% />&nbsp;<span class="foswikiImage">%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%A_FILE%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class="foswikiSmallish foswikiGrayText userPictureActions">%A_FILE% <a href="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?template=PersonalInfoPictureDeleteView&attachment=%ENCODE{"%A_FILE%"}%" rel='nofollow'>delete...</a></span></div>%TMPL:END%
+<input type="radio" class="foswikiRadioButton" id="<nop>Picture%A_FILE%" name="Picture" value="%A_FILE%" %IF{" '%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%"}%'='%A_FILE%'" then="checked=\"checked\"" else=""}% />&nbsp;<span class='foswikiImage'>%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%A_FILE%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class='userPictureActions foswikiSmall'><a href='%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?template=PersonalInfoPictureDeleteView&attachment=%ENCODE{"%A_FILE%"}%' rel='nofollow' class='foswikiButton'>Delete...</a></span></div>%TMPL:END%
 
 %{ Footer for topic attachment table }%
 %TMPL:DEF{ATTACH:files:footer}%</div><!--/foswikiFormSteps--></div><!--/pIPictures-->
@@ -34,11 +34,11 @@
 
 %TMPL:DEF{"pagetitle"}%%MAKETEXT{"Set your personal picture"}%%TMPL:END%
 
-%TMPL:DEF{"uploadnew"}%<div class="piUploadNew foswikiUnvisited"><a href="%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?template=PersonalInfoPictureUploadView">%MAKETEXT{"Upload a new one"}%</a></div><!--/piUploadNew-->%TMPL:END%
+%TMPL:DEF{"uploadnew"}%<div class="piUploadNew foswikiUnvisited"><a href="%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?template=PersonalInfoPictureUploadView">%MAKETEXT{"Upload a new picture"}%</a></div><!--/piUploadNew-->%TMPL:END%
 
 
 
-%TMPL:DEF{"picturelist"}%%TMPL:P{"uploadnew"}%%META{"attachments" all="on" template="%TEMPLATE%"}%%TMPL:END%
+%TMPL:DEF{"picturelist"}%%TMPL:P{"uploadnew"}%%META{"attachments" all="on" template="%URLPARAM{template}%"}%%TMPL:END%
 
 
 
@@ -55,8 +55,12 @@
 
 
 
-%TMPL:DEF{"templatestyle"}%<style type="text/css" media="all">
-.pIPictures .genericFileType {display:none;}
+%TMPL:DEF{"templatestyle"}%%ADDTOZONE{
+"head"
+text="<style type='text/css' media='all'>
+.pIPictures .genericFileType {
+	display:none;
+}
 .pIPictures .fileTypepng,
 .pIPictures .fileTypePNG,
 .pIPictures .fileTypegif,
@@ -64,15 +68,28 @@
 .pIPictures .fileTypejpg,
 .pIPictures .fileTypeJPG,
 .pIPictures .fileTypejpeg,
-.pIPictures .fileTypeJPEG {display:block;}
-.pIPictures .userPictureActions {margin:0 0 0 1em;}
-.pIPictures .userPictureActions a:link,
-.pIPictures .userPictureActions a:visited {text-decoration:underline;}
-.piUploadNew {margin:1em 0; text-align:left;}
-.piUploadNew a {font-weight:bold;}
-.foswikiImage img {vertical-align:middle;}
-.imageFloat {display:inline;}
-</style>%TMPL:END%
+.pIPictures .fileTypeJPEG {
+	display:block;
+}
+.pIPictures .userPictureActions {
+	margin:0 0 0 1em;
+}
+.piUploadNew {
+	margin:1em 0;
+	text-align:left;
+}
+.piUploadNew a {
+	font-weight:bold;
+}
+.pIPictures .foswikiImage img {
+	vertical-align:middle;
+}
+.imageFloat {
+	display:inline;
+}
+</style>"
+id="PersonalInfoAddOn_templatestyle"
+}%%TMPL:END%
 
 
 %TMPL:DEF{"content"}%%TMPL:P{"picturelist"}%%TMPL:END%

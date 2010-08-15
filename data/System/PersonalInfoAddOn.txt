@@ -1,6 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1181684909" format="1.1" version="1.1"}%
 ---+!! Personal Info !AddOn
-
 *User personalisation and user search tool.*
 
 A set of elements to enhance user information on the user homepage:
@@ -14,56 +13,51 @@ Search tools to find users:
 
 When installed, see [[%USERSWEB%.PersonalInfoHome]] for additional details.
 
-%TOC{title="On this page:"}%
-
-%INCLUDE{"%USERSWEB%.PersonalInfoHome" warn="off"}%
+%TOC%
 
 ---++ Examples
 
 ---+++ User homepage
 The user homepage with user picture and most common information 'lifted' from the extended !UserForm. The information that is shown is configurable.
 
-<div class="foswikiImage"><img src="%ATTACHURLPATH%/userpage.png" alt="Screenshot of personalInfo block" width='728' height='300' /></div>
+<div class="foswikiImage"><img src="%ATTACHURLPATH%/example_view.png" alt='Example of user topic' width='624' height='376' /></div>
 
 ---+++ Edit mode of user information
 Foolproof editing of most common user data.
 
-<div class="foswikiImage"><img src="%ATTACHURLPATH%/userpage_edit.png" alt="Screenshot of personalInfo: edit data" width='728' height='300' /></div>
+<div class="foswikiImage"><img src="%ATTACHURLPATH%/example_edit.png" alt='Example of editing data' width='624' height='376' /></div>
 
 ---+++ Choosing a personal picture
 Each user can have multiple pictures and select one of them.
 
-<div class="foswikiImage"><img src="%ATTACHURLPATH%/userpage_select_picture.png" alt="Screenshot of personalInfo: set picture screen" width='879' height='534' /></div>
+<div class="foswikiImage"><img src="%ATTACHURLPATH%/example_picture.png" alt='Example of selecting a personal picture' width='624' height='376' /></div>
 
 If Foswiki:Extensions.ImagePlugin is installed, pictures are scaled on the server so camera pictures can be safely uploaded without fear of network congestion.
 
 ---+++ Quick search phone list
 When installed at our homepage this quickly became the killer app of our intranet Foswiki.
 
-If Foswiki:Extensions/AttachContentPlugin is installed, data is read from a saved attachment file. Each time a user makes a change to the user topic this file is updated.
-
-<div class="foswikiImage"><img src="%ATTACHURLPATH%/phonelist.png" alt="Screenshot of phone list quick search" width='314' height='236' /></div>
+<div class="foswikiImage"><img src="%ATTACHURLPATH%/example_lookup.png" alt='Example of quick phone lookup' width='292' height='233' /></div>
 
 ---+++ Face book
 Similar to the phone list but with pictures.
 
-<div class="foswikiImage"><img src="%ATTACHURLPATH%/facebook.png" alt="Screenshot of face book page" width='728' height='408' /></div>
+<div class="foswikiImage"><img src="%ATTACHURLPATH%/example_facebook.png" alt='Example of face book page' width='624' height='376' /></div>
 
 
 ---++ Using !PersonalInfo with !NatSkin
 
-To use the phone directory lookup, edit %TWIKIWEB%.<nop>TWikiWebSideBar:
+To use the phone directory lookup, edit %SYSTEMWEB%.<nop>SiteSideBar:
 
 After
 <verbatim>
-%STARTINCLUDE%<!-- twiki.twikiwebsidebar -->
+%STARTINCLUDE%<!-- sitesidebar -->
 </verbatim>
 you write:
 <verbatim>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twikiEvent.js"></script>
-%INCLUDE{"Main.PersonalInfo" section="directSearch" title="*Phone list*" maxresults="10"}%
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JavascriptFiles/foswikiEvent.js"></script>
+%INCLUDE{"%USERSWEB%.PersonalInfo" section="directSearch" title="*Phone list*" maxresults="10"}%
 </verbatim>
-(assuming you have !PersonalInfo installed in Main web)
 
 
 ---++ Settings
@@ -75,22 +69,32 @@ If you are upgrading from a previous version of this add-on, please note that an
 
 ---++ Installation Instructions
 
-   * Download the ZIP file from the Plugin web (see below).
+   * Download =%TOPIC%.zip=
    * Unzip =%TOPIC%.zip= in your Foswiki root directory.
    * You find 2 folders in subdirectory =_PersonalInfoAddOnFiles=.
       * First time users: copy the files in both folders (not the folders itself!) to your %USERSWEB% web.
-      * Upgraders: first check the files in =verify_you_don_t_overwrite_when_copying_to_user_web= if you are not overwriting any customizations
+      * Check the files in =verify_you_don_t_overwrite_when_copying_to_user_web= if you are not overwriting any customizations
+         * !UserForm is provided as example of the default !UserForm enhanced with !PersonalInfo fields. You can copy this file if you don't have a custom version of %USERSWEB%.UserForm yet.
+         * !NewUserTemplate is provided as example of the default !NewUserTemplate enhanced with !PersonalInfo fields. You can copy this file if you don't have a custom version of %USERSWEB%.NewUserTemplate yet.
    * Optional plugins:
       * Foswiki:Extensions/AttachContentPlugin for a faster quick search module 
       * Foswiki:Extensions/ImagePlugin for server-side image rendering (strongly recommended)
-
+   * For fast user data retrieval:
+      1 Install Foswiki:Extensions/AttachContentPlugin
+      1 Enable it in [[%SCRIPTURL{configure}%#EnabledPlugins$Extensions][configure]]
+      1 In [[%USERSWEB%.SitePreferences]] set =PERSONALINFOADDON_FILECACHE=: %BR%<verbatim>   Set PERSONALINFOADDON_FILECACHE = 1</verbatim>
+      1 Update the info, either:
+         1 Manually: in <nop>PersonalInfo, click on the "Update" button. By saving the topic, the attachment is updated with the latest information.
+         1 Automatically: create a cron job to regularly save the <nop>PersonalInfo topic.
 
 ---++ !AddOn Info
 
-| Copyright &copy;: | 2007, 2008, 2009 Arthur Clemens |
-| License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]] |
+| Copyright &copy;: | 2007-2010 Arthur Clemens |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Version: | %$VERSION% |
+|  Release: | %$RELEASE% |
 | Dependencies: | %$DEPENDENCIES% |
-| Plugin Version: | 1.5.1 (14 Apr 2009)  |
+| 15 Aug 2010 | 1.6 Fixed saving data in stricter Foswiki ('GET' problem).  |
 | 14 Apr 2009 | 1.5.1 Corrected numerous references to 'twiki'. |
 | 25 Jan 2009 | 1.5 Foswiki version |
 | 08 Nov 2008 | 1.4.1 Prevent "create new topic links" in edit fields with wikiword names. |
@@ -109,9 +113,10 @@ If you are upgrading from a previous version of this add-on, please note that an
 | Support: | http://foswiki.org/Support/%TOPIC% |
 
 
-%META:FILEATTACHMENT{name="userpage_edit.png" attr="" autoattached="1" comment="" date="1181684125" path="userpage_edit.png" size="59193" user="UnknownUser" version=""}%
-%META:FILEATTACHMENT{name="facebook.png" attr="" autoattached="1" comment="" date="1181684152" path="facebook.png" size="195158" user="UnknownUser" version=""}%
-%META:FILEATTACHMENT{name="userpage.png" attr="" autoattached="1" comment="" date="1181684046" path="userpage.png" size="59462" user="UnknownUser" version=""}%
-%META:FILEATTACHMENT{name="userpage_select_picture.png" attr="" autoattached="1" comment="" date="1181684268" path="userpage_select_picture.png" size="104724" user="UnknownUser" version=""}%
-%META:FILEATTACHMENT{name="phonelist.png" attr="" autoattached="1" comment="" date="1181684188" path="phonelist.png" size="15764" user="UnknownUser" version=""}%
-%META:FILEATTACHMENT{name="silhouette.gif" attr="h" autoattached="1" comment="Default silhouette image" date="1180882660" path="silhouette.gif" size="1177" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="example_edit.png" attr="h" autoattached="1" comment="" date="1281882679" path="example_edit.png" size="53624" version=""}%
+%META:FILEATTACHMENT{name="example_view.png" attr="h" autoattached="1" comment="" date="1281882667" path="example_view.png" size="55751" version=""}%
+%META:FILEATTACHMENT{name="template_diagram.png" attr="h" autoattached="1" comment="" date="1225565135" path="template_diagram.png" size="47482" version=""}%
+%META:FILEATTACHMENT{name="example_picture.png" attr="h" autoattached="1" comment="" date="1281882695" path="example_picture.png" size="109918" version=""}%
+%META:FILEATTACHMENT{name="example_facebook.png" attr="h" autoattached="1" comment="" date="1281882709" path="example_facebook.png" size="159313" version=""}%
+%META:FILEATTACHMENT{name="example_lookup.png" attr="h" autoattached="1" comment="" date="1281882746" path="example_lookup.png" size="11206" version=""}%
+%META:FILEATTACHMENT{name="silhouette.gif" attr="h" autoattached="1" comment="" date="1225565135" path="silhouette.gif" size="1177" version=""}%

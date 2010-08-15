@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1173049125" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1281879251" format="1.1" reprev="1" version="1"}%
 %META:TOPICPARENT{name="WikiUsers"}%
 
 Demo user for %SYSTEMWEB%.PersonalInfoAddOn for illustration purposes only. This topic can be safely deleted after review. %BR%
@@ -23,7 +23,7 @@ For a general overview see [[PersonalInfoHome]].
 %META:FIELD{name="Picture" attributes="H" title="Picture" value="tiger.jpg"}%
 %META:FIELD{name="WorkStatus" attributes="H" title="<nop>WorkStatus" value="Current"}%
 %META:FIELD{name="WorkEmail" attributes="H" title="<nop>WorkEmail" value="john.doe@company.com"}%
-%META:FIELD{name="WorkPhone" attributes="H" title="<nop>WorkPhone" value="222"}%
+%META:FIELD{name="WorkPhone" attributes="H" title="<nop>WorkPhone" value="2221"}%
 %META:FIELD{name="WorkPhoneMobile" attributes="H" title="<nop>WorkPhoneMobile" value="0123456789"}%
 %META:FIELD{name="WorkLocation" attributes="H" title="<nop>WorkLocation" value="Main office"}%
 %META:FILEATTACHMENT{name="tiger.jpg" attachment="tiger.jpg" attr="h" comment="" date="1166390222" path="tiger.jpg" size="150782" stream="tiger.jpg" user="Main.ProjectContributor" version="1"}%

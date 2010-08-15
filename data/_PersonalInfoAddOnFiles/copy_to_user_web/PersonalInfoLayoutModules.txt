@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1172698757" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1281879251" format="1.1" version="1.1"}%
 ---+!! Personal Info Layout Modules
 
 <verbatim>
@@ -9,7 +9,7 @@
 <div class="pIparagraphWithImageLeftText">
 %text%
 </div><!--/pIparagraphWithImageLeftText-->
-<br class="foswikiClear" />
+<p class="foswikiClear" />
 </div><!--/pIparagraphWithImageLeft-->%ENDSECTION{"paragraphWithImageLeft"}%
 </verbatim>
 
@@ -26,29 +26,28 @@
 </verbatim>
 
 <verbatim>
-%STARTSECTION{"paragraphWithImageLeftStyle"}%<style type="text/css" media="all">
-.pIparagraphFrame {
-}
+%STARTSECTION{"paragraphWithImageLeftStyle"}%%ADDTOZONE{
+"head"
+text="<style type='text/css' media='all'>
+.pIparagraphFrame {}
 .pIparagraphWithImageLeft {
-margin:1em 0 0 0;
+	margin:1em 0 0 0;
 }
 .pIparagraphWithImageLeftText {
-margin-left:%URLPARAM{"imgWidth" default="120"}%px;
-padding-left:25px;
+	margin-left:%URLPARAM{"imgWidth" default="120"}%px;
+	padding-left:25px;
 }
 .pIparagraphWithImageLeftImage {
-float:left;
-}
-.pIFormer {
-background:#F5F6F9;
-padding:.5em 2em;
+	float:left;
 }
 .pIFormer,
 .pIFormer h1,
 .pIFormer a:link,
 .pIFormer a:visited,
 .pIFormer .pIparagraphWithImageLeftText th {
-color:#7D8CA5;
+	color:#7d8ca5;
 }
-</style>%ENDSECTION{"paragraphWithImageLeftStyle"}%
+</style>"
+id="PersonalInfoAddOn_paragraphWithImageLeftStyle"
+}%%ENDSECTION{"paragraphWithImageLeftStyle"}%
 </verbatim>
