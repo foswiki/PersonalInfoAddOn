@@ -25,8 +25,8 @@ This topic holds a number of modules (INCLUDE sections) to display and search us
 In view template PersonalInfoUserViewTemplate these styles are added to the HTML head. Other pages need to include the styles using =%<nop>INCLUDE{}%=.
 
 <verbatim>
-%STARTSECTION{"personalInfoStyle"}%%ADDTOZONE{
-"head"
+%STARTSECTION{"personalInfoStyle"}%%ADDTOHEAD{
+"PersonalInfoAddOn_personalInfoStyle"
 text="<style type='text/css' media='all'>
 .personalInfo {
 	margin:0 0 1em 0;
@@ -67,7 +67,6 @@ text="<style type='text/css' media='all'>
 	color:#ccc;
 }
 </style>"
-id="PersonalInfoAddOn_personalInfoStyle"
 }%%ENDSECTION{"personalInfoStyle"}%
 </verbatim>
 
@@ -148,8 +147,8 @@ end:vcard"}%%ENDSECTION{"vCard"}%
 </verbatim>
 
 <verbatim>
-%STARTSECTION{"initSearchBox"}%%ADDTOZONE{
-"head"
+%STARTSECTION{"initSearchBox"}%%ADDTOHEAD{
+"PersonalInfo_initSearchBox"
 text="<script language='javascript' type='text/javascript'>
 // <![CDATA[
 var pISearch; if (pISearch == undefined) pISearch = {};
@@ -169,7 +168,6 @@ function initSearchBox() {
 $(document).ready(initSearchBox);
 // ]]>
 </script>"
-id="PersonalInfo_initSearchBox"
 requires="JQUERYPLUGIN"
 }%%ENDSECTION{"initSearchBox"}%
 </verbatim>
@@ -286,8 +284,8 @@ color:#fff;
 ---+++ Pictures
 
 <verbatim>
-%STARTSECTION{"pictures"}%%ADDTOZONE{
-"head"
+%STARTSECTION{"pictures"}%%ADDTOHEAD{
+"PersonalInfoAddOn_pictures"
 text="<style type='text/css' media='all'>
 #pISearchResultsGrid {
 	margin:1em 0;
@@ -333,7 +331,6 @@ overflow:hidden;
 	background:none;
 }
 </style>"
-id="PersonalInfoAddOn_pictures"
 }%
 <div id="pISearchResultsGrid">%SEARCH{ "[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,NewUserTemplate,PersonalInfo,PersonalInfoModules,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser%IF{'defined exclude' then=',%exclude%'}%" order="topic" format="<div class='foswikiImage'><a href='%SCRIPTURL{view}%/$web/$topic' class='pISearchResultsGridItem' id='pISearch$topic' title='$formfield(FirstName) $formfield(LastName)'>$percntINCLUDE{$quotPersonalInfoLayoutModules$quot section=$quotimage$quot imgType=$quotnolink$quot imgWeb=$quot$web$quot imgTopic=$quot$topic$quot imgTitle=$quot$formfield(FirstName) $formfield(LastName)$quot imgName=$quot$percntFORMFIELD{$quotPicture$quot topic=$quot$web.$topic$quot format=$quot$value$quot default=$quot$quot alttext=$quot$quot}$percnt$quot}$percnt<span class='pISearchResultsGridInfo'>$formfield(FirstName) $formfield(LastName)</span></a></div>" "}%<p class="foswikiClear" /></div>%ENDSECTION{"pictures"}%
 </verbatim>

@@ -26,8 +26,8 @@
 </verbatim>
 
 <verbatim>
-%STARTSECTION{"paragraphWithImageLeftStyle"}%%ADDTOZONE{
-"head"
+%STARTSECTION{"paragraphWithImageLeftStyle"}%%ADDTOHEAD{
+"PersonalInfoAddOn_paragraphWithImageLeftStyle"
 text="<style type='text/css' media='all'>
 .pIparagraphFrame {}
 .pIparagraphWithImageLeft {
@@ -48,6 +48,5 @@ text="<style type='text/css' media='all'>
 	color:#7d8ca5;
 }
 </style>"
-id="PersonalInfoAddOn_paragraphWithImageLeftStyle"
 }%%ENDSECTION{"paragraphWithImageLeftStyle"}%
 </verbatim>

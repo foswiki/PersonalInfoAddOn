@@ -55,8 +55,8 @@
 
 
 
-%TMPL:DEF{"templatestyle"}%%ADDTOZONE{
-"head"
+%TMPL:DEF{"templatestyle"}%%ADDTOHEAD{
+"PersonalInfoAddOn_templatestyle"
 text="<style type='text/css' media='all'>
 .pIPictures .genericFileType {
 	display:none;
@@ -88,7 +88,6 @@ text="<style type='text/css' media='all'>
 	display:inline;
 }
 </style>"
-id="PersonalInfoAddOn_templatestyle"
 }%%TMPL:END%
 
 
