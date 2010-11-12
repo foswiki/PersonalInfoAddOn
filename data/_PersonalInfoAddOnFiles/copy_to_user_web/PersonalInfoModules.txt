@@ -25,8 +25,9 @@ This topic holds a number of modules (INCLUDE sections) to display and search us
 In view template PersonalInfoUserViewTemplate these styles are added to the HTML head. Other pages need to include the styles using =%<nop>INCLUDE{}%=.
 
 <verbatim>
-%STARTSECTION{"personalInfoStyle"}%%ADDTOHEAD{
-"PersonalInfoAddOn_personalInfoStyle"
+%STARTSECTION{"personalInfoStyle"}%%ADDTOZONE{
+"head"
+id="PersonalInfoAddOn_personalInfoStyle"
 text="<style type='text/css' media='all'>
 .personalInfo {
 	margin:0 0 1em 0;
@@ -135,7 +136,7 @@ end:vcard"}%%ENDSECTION{"vCard"}%
 %STARTSECTION{"directSearch" title="%title%" maxresults="%maxresults%" layout="%layout%" showpictures="%showpictures%" inputfieldsize="%inputfieldsize%" pictureheight="%PICTUREHEIGHT%"}% <div> %title% </div>
 <input type="text" class="foswikiInputField" size="%IF{"defined inputfieldsize" then="%inputfieldsize%" else="12"}%" id="personalInfoSearchBox" name="personalInfoSearchBox" />
 <div id="personalInfoSearchResults"><!-- search results will be displayed here --></div>
-%IF{"$PERSONALINFOADDON_FILECACHE" then='%INCLUDE{"PersonalInfo" section="directSearchScriptFile"}%' else='%INCLUDE{"PersonalInfo" section="directSearchScript" raw="on" literal="on"}%'}%
+%IF{"'%PERSONALINFOADDON_FILECACHE%'='1'" then='%INCLUDE{"PersonalInfo" section="directSearchScriptFile"}%' else='%INCLUDE{"PersonalInfo" section="directSearchScript" raw="on" literal="on"}%'}%
 %INCLUDE{"PersonalInfoModules" section="initSearchBox" raw="on" literal="on"}%
 <style type="text/css" media="all">
 #personalInfoSearchResults td {
@@ -147,8 +148,10 @@ end:vcard"}%%ENDSECTION{"vCard"}%
 </verbatim>
 
 <verbatim>
-%STARTSECTION{"initSearchBox"}%%ADDTOHEAD{
-"PersonalInfo_initSearchBox"
+%STARTSECTION{"initSearchBox"}%%ADDTOZONE{
+"script"
+id="PersonalInfo_initSearchBox"
+requires="JQUERYPLUGIN"
 text="<script language='javascript' type='text/javascript'>
 // <![CDATA[
 var pISearch; if (pISearch == undefined) pISearch = {};
@@ -164,11 +167,9 @@ function initSearchBox() {
 		pISearch.showResults(box.value);
 	}
 }
-// assume jquery
 $(document).ready(initSearchBox);
 // ]]>
 </script>"
-requires="JQUERYPLUGIN"
 }%%ENDSECTION{"initSearchBox"}%
 </verbatim>
 
@@ -284,8 +285,10 @@ color:#fff;
 ---+++ Pictures
 
 <verbatim>
-%STARTSECTION{"pictures"}%%ADDTOHEAD{
-"PersonalInfoAddOn_pictures"
+%STARTSECTION{"pictures"}%%ADDTOZONE{
+"head"
+id="PersonalInfoAddOn_pictures"
+requires="JQUERYPLUGIN"
 text="<style type='text/css' media='all'>
 #pISearchResultsGrid {
 	margin:1em 0;
@@ -338,7 +341,7 @@ overflow:hidden;
 
 ---+++ pictureFilterSearch
 <verbatim>
-%STARTSECTION{"pictureFilterSearch"}%%IF{"$PERSONALINFOADDON_FILECACHE" then='%INCLUDE{"PersonalInfo" section="directSearchScriptFile"}%' else='%INCLUDE{"PersonalInfo" section="directSearchScript" raw="on" literal="on"}%'}%<script language="javascript" type="text/javascript">
+%STARTSECTION{"pictureFilterSearch"}%%IF{"'%PERSONALINFOADDON_FILECACHE%'='1'" then='%INCLUDE{"PersonalInfo" section="directSearchScriptFile"}%' else='%INCLUDE{"PersonalInfo" section="directSearchScript" raw="on" literal="on"}%'}%<script language="javascript" type="text/javascript">
 // <![CDATA[
 var pISearch; if (pISearch == undefined) pISearch = {};
 var MAX_RESULTS=%IF{"defined maxresults" then="%maxresults%" else="12"}%;
@@ -381,7 +384,6 @@ pISearch.processResult = function(inName, inUserData) {
 		pISearch.pictureSet[topic].style.display = 'inline';
 	}
 }
-// assume jquery
 $(document).ready(pISearch.initSearch);
 // ]]>
 </script>
